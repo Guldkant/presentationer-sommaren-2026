@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sommaren 2026 · GK Restauranger · VD-keynote</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gk-midnight: #0a1628;
+    --gk-deep: #142847;
+    --gk-blue: #1d3a5f;
+    --gk-gold: #c9a961;
+    --gk-gold-bright: #e6c989;
+    --gk-gold-deep: #8b7340;
+    --gk-cream: #f5efe1;
+    --gk-rose: #d97a7a;
+    --gk-teal: #2d6463;
+    --gk-aurora: #5fa8a5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #060d1a;
+    color: var(--gk-cream);
+    line-height: 1.55;
+    user-select: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    line-height: 1.08;
+  }
+
+  /* ================ STAGE & AURORA ================ */
+  .stage {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(95,168,165,0.10), transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(45,100,99,0.18), transparent 60%),
+      linear-gradient(160deg, #060d1a 0%, #0e1f3a 50%, #060d1a 100%);
+  }
+  .aurora {
+    position: absolute;
+    inset: -20%;
+    background:
+      radial-gradient(ellipse 60% 30% at 30% 30%, rgba(201,169,97,0.18), transparent 60%),
+      radial-gradient(ellipse 50% 25% at 70% 60%, rgba(95,168,165,0.18), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 80%, rgba(217,122,122,0.10), transparent 60%);
+    filter: blur(40px);
+    animation: auroraFlow 22s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes auroraFlow {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(-3%, 2%) scale(1.05); }
+    66% { transform: translate(2%, -3%) scale(0.98); }
+  }
+  .stars {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,0.55), transparent),
+      radial-gradient(1px 1px at 28% 65%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.2px 1.2px at 47% 22%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 63% 80%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1.4px 1.4px at 79% 35%, rgba(255,255,255,0.45), transparent),
+      radial-gradient(1px 1px at 90% 62%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1.2px 1.2px at 8% 78%, rgba(255,255,255,0.4), transparent),
+      radial-gradient(1px 1px at 36% 92%, rgba(255,255,255,0.5), transparent);
+    animation: twinkle 7s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  /* Floating embers */
+  .ember {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230,201,137,0.9), rgba(201,169,97,0));
+    pointer-events: none;
+    animation: rise 12s linear infinite;
+    opacity: 0;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
+  }
+
+  /* ================ SLIDE BASE ================ */
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 6vh 9vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(80px) scale(0.98);
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+  }
+  .slide.exited {
+    transform: translateX(-80px) scale(0.98);
+  }
+  .slide.entering-back {
+    transform: translateX(-80px) scale(0.98);
+  }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.5em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    opacity: 0;
+    animation: rise-in 0.8s 0.2s ease-out forwards;
+  }
+  .slide.active h1, .slide.active h2 {
+    animation: rise-in 1s 0.4s ease-out backwards;
+  }
+  .slide.active .lead, .slide.active p:not(.no-anim) {
+    animation: rise-in 1s 0.6s ease-out backwards;
+  }
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ================ HOOK SLIDE ================ */
+  .hook-slide {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .hook-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 1.15;
+    background: linear-gradient(135deg, #f5efe1 0%, #e6c989 60%, #c9a961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 1.2em;
+  }
+  .typewriter::after {
+    content: '|';
+    color: var(--gk-gold);
+    animation: blink 1s steps(2) infinite;
+    -webkit-text-fill-color: var(--gk-gold);
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ================ TITLE SLIDE ================ */
+  .title-slide {
+    align-items: center;
+    text-align: center;
+  }
+  .title-slide h1 {
+    font-size: clamp(3.5rem, 9vw, 8.5rem);
+    font-weight: 400;
+    background: linear-gradient(135deg, #f5efe1 0%, #e6c989 50%, #c9a961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+  }
+  .title-slide h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, #e6c989 0%, #c9a961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .title-slide .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    opacity: 0.85;
+    margin-top: 1.5rem;
+    max-width: 900px;
+  }
+  .title-slide .speaker {
+    margin-top: 4rem;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    opacity: 0.85;
+  }
+  .gold-rule {
+    width: 100px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gk-gold), transparent);
+    margin: 2rem auto;
+    transform-origin: center;
+    animation: rule-grow 1s 0.8s ease-out backwards;
+  }
+  @keyframes rule-grow {
+    from { transform: scaleX(0); opacity: 0; }
+    to { transform: scaleX(1); opacity: 1; }
+  }
+
+  /* ================ HEADERS & TYPE ================ */
+  .slide h2 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    margin-bottom: 1.5rem;
+  }
+  .slide h2 .gold {
+    background: linear-gradient(135deg, #e6c989 0%, #c9a961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+  }
+  .slide .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-style: italic;
+    line-height: 1.4;
+    opacity: 0.92;
+    max-width: 1100px;
+  }
+  .slide p {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.65;
+    opacity: 0.85;
+    max-width: 900px;
+  }
+  .pull-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    line-height: 1.3;
+    color: var(--gk-cream);
+    border-left: 3px solid var(--gk-gold);
+    padding: 1rem 0 1rem 2rem;
+    margin: 1.5rem 0;
+    max-width: 1100px;
+  }
+
+  /* ================ STAT GRID ================ */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    max-width: 1200px;
+  }
+  .stat-big { text-align: center; padding: 2rem 1rem; }
+  .stat-big .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    line-height: 1;
+    color: var(--gk-gold-bright);
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 30px rgba(230,201,137,0.3);
+  }
+  .stat-big .label {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  /* ================ TIMELINE (animated path) ================ */
+  .timeline {
+    position: relative;
+    margin-top: 3rem;
+    padding: 2rem 0;
+  }
+  .timeline svg {
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    width: 100%; height: 4px;
+    transform: translateY(-1px);
+    overflow: visible;
+  }
+  .timeline-path {
+    stroke: var(--gk-gold);
+    stroke-width: 1.5;
+    fill: none;
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+    transition: stroke-dashoffset 2.2s ease-out;
+  }
+  .slide.active .timeline-path { stroke-dashoffset: 0; }
+  .timeline-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+  .tl-item {
+    text-align: center;
+    padding: 0 0.5rem;
+    opacity: 0;
+    animation: rise-in 0.6s ease-out forwards;
+  }
+  .slide.active .tl-item:nth-child(1) { animation-delay: 0.4s; }
+  .slide.active .tl-item:nth-child(2) { animation-delay: 0.8s; }
+  .slide.active .tl-item:nth-child(3) { animation-delay: 1.2s; }
+  .slide.active .tl-item:nth-child(4) { animation-delay: 1.6s; }
+  .slide.active .tl-item:nth-child(5) { animation-delay: 2.0s; }
+  .tl-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--gk-gold);
+    margin: 0 auto 1rem;
+    box-shadow: 0 0 0 6px rgba(201,169,97,0.18), 0 0 20px rgba(230,201,137,0.6);
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 6px rgba(201,169,97,0.18), 0 0 20px rgba(230,201,137,0.6); }
+    50% { box-shadow: 0 0 0 10px rgba(201,169,97,0.08), 0 0 30px rgba(230,201,137,0.8); }
+  }
+  .tl-year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--gk-gold-bright);
+    margin-bottom: 0.4rem;
+  }
+  .tl-text { font-size: 0.92rem; opacity: 0.85; }
+
+  /* ================ CHEFS ================ */
+  .chefs-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .chef-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    border: 1px solid rgba(201,169,97,0.2);
+    border-radius: 14px;
+    background: linear-gradient(180deg, rgba(201,169,97,0.05), transparent);
+    transition: transform 0.4s, border-color 0.4s;
+  }
+  .chef-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201,169,97,0.5);
+  }
+  .chef-initial {
+    width: 90px; height: 90px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gk-gold), var(--gk-gold-deep));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    color: var(--gk-midnight);
+    font-weight: 600;
+    box-shadow: 0 0 30px rgba(201,169,97,0.25);
+  }
+  .chef-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--gk-gold-bright); }
+  .chef-title { font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; margin-top: 0.3rem; }
+
+  /* ================ KÄRNVÄRDEN ================ */
+  .three-g {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .g-card {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(201,169,97,0.06), transparent);
+    border: 1px solid rgba(201,169,97,0.2);
+    transition: transform 0.4s, border-color 0.4s, box-shadow 0.4s;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .slide.active .g-card { animation: rise-in 0.8s ease-out forwards; }
+  .slide.active .g-card:nth-child(1) { animation-delay: 0.5s; }
+  .slide.active .g-card:nth-child(2) { animation-delay: 0.9s; }
+  .slide.active .g-card:nth-child(3) { animation-delay: 1.3s; }
+  .g-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(201,169,97,0.5);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.4);
+  }
+  .g-card .letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 7rem;
+    line-height: 1;
+    background: linear-gradient(135deg, #e6c989, #8b7340);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  .g-card h3 { font-size: 2.2rem; color: var(--gk-gold-bright); margin-bottom: 1rem; }
+  .g-card p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; opacity: 0.9; }
+
+  /* ================ BULLETS ================ */
+  .bullets {
+    list-style: none;
+    margin-top: 2rem;
+    max-width: 1000px;
+  }
+  .bullets li {
+    padding: 1rem 0 1rem 3rem;
+    position: relative;
+    border-bottom: 1px solid rgba(201,169,97,0.12);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .slide.active .bullets li { animation: slide-in 0.6s ease-out forwards; }
+  .slide.active .bullets li:nth-child(1) { animation-delay: 0.4s; }
+  .slide.active .bullets li:nth-child(2) { animation-delay: 0.55s; }
+  .slide.active .bullets li:nth-child(3) { animation-delay: 0.7s; }
+  .slide.active .bullets li:nth-child(4) { animation-delay: 0.85s; }
+  .slide.active .bullets li:nth-child(5) { animation-delay: 1.0s; }
+  .slide.active .bullets li:nth-child(6) { animation-delay: 1.15s; }
+  .slide.active .bullets li:nth-child(7) { animation-delay: 1.3s; }
+  @keyframes slide-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  .bullets li:last-child { border-bottom: none; }
+  .bullets li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 1rem;
+    color: var(--gk-gold);
+    font-size: 1.4rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  .bullets li strong { color: var(--gk-gold-bright); font-weight: 500; }
+
+  /* ================ METRIC PANELS ================ */
+  .metric-panels {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    max-width: 1200px;
+  }
+  .metric {
+    padding: 2rem 1.5rem;
+    background: linear-gradient(135deg, rgba(29,58,95,0.5), rgba(20,40,71,0.4));
+    border: 1px solid rgba(201,169,97,0.2);
+    border-radius: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .slide.active .metric { animation: rise-in 0.6s ease-out forwards; }
+  .slide.active .metric:nth-child(1) { animation-delay: 0.5s; }
+  .slide.active .metric:nth-child(2) { animation-delay: 0.65s; }
+  .slide.active .metric:nth-child(3) { animation-delay: 0.8s; }
+  .slide.active .metric:nth-child(4) { animation-delay: 0.95s; }
+  .slide.active .metric:nth-child(5) { animation-delay: 1.1s; }
+  .slide.active .metric:nth-child(6) { animation-delay: 1.25s; }
+  .metric:hover { border-color: rgba(201,169,97,0.5); }
+  .metric .target {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--gk-gold-bright);
+    line-height: 1;
+    margin-bottom: 0.6rem;
+    text-shadow: 0 0 20px rgba(230,201,137,0.2);
+  }
+  .metric .what {
+    font-size: 0.92rem;
+    opacity: 0.85;
+    line-height: 1.45;
+  }
+
+  /* ================ EXPECTATION COLS ================ */
+  .expect-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  .expect-col {
+    padding: 2.5rem;
+    border-radius: 18px;
+    border: 1px solid rgba(201,169,97,0.2);
+    background: linear-gradient(180deg, rgba(201,169,97,0.04), transparent);
+  }
+  .expect-col h3 {
+    font-size: 2rem;
+    color: var(--gk-gold-bright);
+    margin-bottom: 1.5rem;
+  }
+  .expect-col ul { list-style: none; }
+  .expect-col li {
+    padding: 0.8rem 0 0.8rem 1.8rem;
+    position: relative;
+    border-bottom: 1px dashed rgba(201,169,97,0.15);
+    font-size: 1.05rem;
+    line-height: 1.5;
+  }
+  .expect-col li:last-child { border-bottom: none; }
+  .expect-col li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    top: 0.85rem;
+    color: var(--gk-gold);
+  }
+
+  /* ================ CHALLENGES ================ */
+  .challenge {
+    padding: 1.8rem 2rem;
+    border-left: 3px solid var(--gk-rose);
+    background: linear-gradient(90deg, rgba(217,122,122,0.08), transparent);
+    border-radius: 4px 14px 14px 4px;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .slide.active .challenge { animation: slide-in 0.6s ease-out forwards; }
+  .slide.active .challenge:nth-child(1) { animation-delay: 0.4s; }
+  .slide.active .challenge:nth-child(2) { animation-delay: 0.6s; }
+  .slide.active .challenge:nth-child(3) { animation-delay: 0.8s; }
+  .slide.active .challenge:nth-child(4) { animation-delay: 1.0s; }
+  .challenge h4 {
+    font-size: 1.5rem;
+    color: var(--gk-cream);
+    margin-bottom: 0.3rem;
+  }
+  .challenge p {
+    font-size: 0.98rem;
+    opacity: 0.85;
+  }
+
+  /* ================ METAPHOR (skepp) ================ */
+  .metaphor-stage {
+    margin-top: 3rem;
+    position: relative;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ship-svg {
+    width: 100%;
+    max-width: 900px;
+    height: 280px;
+  }
+  .wave {
+    stroke: var(--gk-aurora);
+    stroke-width: 1.2;
+    fill: none;
+    opacity: 0.6;
+    stroke-dasharray: 5 8;
+    animation: waveMove 4s linear infinite;
+  }
+  @keyframes waveMove { to { stroke-dashoffset: -26; } }
+  .ship-body {
+    fill: var(--gk-deep);
+    stroke: var(--gk-gold);
+    stroke-width: 1.5;
+  }
+  .sail {
+    fill: rgba(201,169,97,0.18);
+    stroke: var(--gk-gold-bright);
+    stroke-width: 1;
+    transform-origin: center bottom;
+    animation: sailFlap 4s ease-in-out infinite;
+  }
+  @keyframes sailFlap {
+    0%, 100% { transform: skewX(0deg); }
+    50% { transform: skewX(-3deg); }
+  }
+  .ship-group { animation: bob 3.5s ease-in-out infinite; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ================ KORTRUTOR (à la pitch) ================ */
+  .six-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+  }
+  .pitch-card {
+    background: linear-gradient(135deg, rgba(29,58,95,0.55), rgba(20,40,71,0.45));
+    border: 1px solid rgba(201,169,97,0.18);
+    border-left: 3px solid var(--gk-gold);
+    border-radius: 14px;
+    padding: 1.4rem 1.4rem;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  .slide.active .pitch-card { animation: rise-in 0.6s ease-out forwards; }
+  .slide.active .pitch-card:nth-child(1) { animation-delay: 0.4s; }
+  .slide.active .pitch-card:nth-child(2) { animation-delay: 0.55s; }
+  .slide.active .pitch-card:nth-child(3) { animation-delay: 0.7s; }
+  .slide.active .pitch-card:nth-child(4) { animation-delay: 0.85s; }
+  .slide.active .pitch-card:nth-child(5) { animation-delay: 1.0s; }
+  .slide.active .pitch-card:nth-child(6) { animation-delay: 1.15s; }
+  .pitch-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px -10px rgba(0,0,0,0.4);
+  }
+  .pitch-card.accent-blue { border-left-color: #6ea4d4; }
+  .pitch-card.accent-red { border-left-color: #d97a7a; }
+  .pitch-card.accent-emerald { border-left-color: #6db58d; }
+  .pitch-card.accent-amber { border-left-color: #e6c989; }
+  .pitch-card.accent-gray { border-left-color: #9aa0ad; }
+  .pitch-card.accent-violet { border-left-color: #a98bd0; }
+  .pitch-card-head {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  .pitch-icon {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .pitch-icon.bg-blue { background: rgba(110,164,212,0.18); color: #6ea4d4; }
+  .pitch-icon.bg-red { background: rgba(217,122,122,0.18); color: #d97a7a; }
+  .pitch-icon.bg-emerald { background: rgba(109,181,141,0.18); color: #6db58d; }
+  .pitch-icon.bg-amber { background: rgba(230,201,137,0.18); color: #e6c989; }
+  .pitch-icon.bg-gray { background: rgba(154,160,173,0.18); color: #9aa0ad; }
+  .pitch-icon.bg-violet { background: rgba(169,139,208,0.18); color: #a98bd0; }
+  .pitch-card h3 {
+    font-size: 1.25rem;
+    color: var(--gk-cream);
+    line-height: 1.2;
+    margin: 0;
+  }
+  .pitch-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .pitch-card li {
+    padding: 0.35rem 0 0.35rem 1.1rem;
+    position: relative;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    opacity: 0.85;
+  }
+  .pitch-card li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.75rem;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gk-gold);
+  }
+  .pitch-card.accent-red li::before { background: #d97a7a; }
+  .pitch-card.accent-emerald li::before { background: #6db58d; }
+  .pitch-card.accent-amber li::before { background: #e6c989; }
+  .pitch-card.accent-gray li::before { background: #9aa0ad; }
+  .pitch-card.accent-violet li::before { background: #a98bd0; }
+  .pitch-card.accent-blue li::before { background: #6ea4d4; }
+
+  /* Badge à la pitch */
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    background: rgba(201,169,97,0.15);
+    color: var(--gk-gold-bright);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: 100px;
+    border: 1px solid rgba(201,169,97,0.3);
+    vertical-align: middle;
+  }
+
+  /* Branschen i förändring — items */
+  .change-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    max-width: 1200px;
+  }
+  .change-item {
+    padding: 1.2rem 1.4rem;
+    background: rgba(29,58,95,0.4);
+    border-radius: 12px;
+    border: 1px solid rgba(201,169,97,0.15);
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .slide.active .change-item { animation: slide-in 0.6s ease-out forwards; }
+  .slide.active .change-item:nth-child(1) { animation-delay: 0.4s; }
+  .slide.active .change-item:nth-child(2) { animation-delay: 0.6s; }
+  .slide.active .change-item:nth-child(3) { animation-delay: 0.8s; }
+  .slide.active .change-item:nth-child(4) { animation-delay: 1.0s; }
+  .change-item .pitch-icon { width: 32px; height: 32px; font-size: 0.9rem; }
+  .change-item h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gk-cream); margin-bottom: 0.2rem; }
+  .change-item p { font-size: 0.85rem; opacity: 0.78; line-height: 1.4; max-width: none; }
+
+  @media (max-width: 900px) {
+    .six-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ================ VISUAL HINT (för bilder senare) ================ */
+  .visual-hint {
+    position: absolute;
+    bottom: 7rem;
+    right: 2rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gk-aurora);
+    opacity: 0.5;
+    max-width: 200px;
+    text-align: right;
+    line-height: 1.5;
+  }
+  .visual-hint::before {
+    content: '◐ ';
+    color: var(--gk-gold);
+  }
+
+  /* ================ FINAL ================ */
+  .final-slide {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .final-slide h2 {
+    font-size: clamp(3rem, 8vw, 7rem);
+  }
+  .final-slide p.signoff {
+    margin-top: 3rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: var(--gk-gold-bright);
+  }
+
+  /* ================ CONFETTI ================ */
+  .confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* ================ UI ================ */
+  .progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gk-gold-deep), var(--gk-gold-bright));
+    transition: width 0.6s ease;
+    z-index: 100;
+    box-shadow: 0 0 12px rgba(230,201,137,0.6);
+  }
+  .ui-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+  }
+  .ui-left, .ui-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    pointer-events: auto;
+  }
+  .brand-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--gk-gold);
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+  .counter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gk-gold-bright);
+    letter-spacing: 0.1em;
+  }
+  .nav-btn {
+    background: rgba(201,169,97,0.1);
+    border: 1px solid rgba(201,169,97,0.25);
+    color: var(--gk-cream);
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-btn:hover {
+    background: rgba(201,169,97,0.2);
+    color: var(--gk-gold-bright);
+    transform: scale(1.05);
+  }
+  .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  .help-pill {
+    position: fixed;
+    top: 1.2rem;
+    right: 1.5rem;
+    z-index: 100;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    opacity: 0.5;
+  }
+  .help-pill kbd {
+    background: rgba(201,169,97,0.15);
+    border: 1px solid rgba(201,169,97,0.3);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    margin: 0 0.2rem;
+    font-family: inherit;
+    font-size: 0.7rem;
+  }
+
+  /* ================ SPEAKER NOTES ================ */
+  .notes-panel {
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: min(800px, 90vw);
+    background: rgba(10, 22, 40, 0.95);
+    border: 1px solid rgba(201,169,97,0.4);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    z-index: 90;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+  }
+  .notes-panel.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .notes-panel h5 {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    margin-bottom: 0.7rem;
+    font-weight: 500;
+  }
+  .notes-panel p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    opacity: 0.9;
+    color: var(--gk-cream);
+  }
+
+  @media (max-width: 900px) {
+    .three-g, .chefs-row, .expect-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .timeline-row { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .timeline svg { display: none; }
+    .slide { padding: 4vh 6vw; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="aurora"></div>
+  <div class="stars"></div>
+  <div id="emberField"></div>
+</div>
+
+<canvas class="confetti-canvas" id="confetti"></canvas>
+
+<div class="progress" id="progress" style="width: 0%"></div>
+<div class="help-pill"><kbd>←</kbd><kbd>→</kbd> Navigera · <kbd>N</kbd> Talarnoter · <kbd>F</kbd> Fullskärm</div>
+
+<!-- ================ SLIDES ================ -->
+
+<!-- ============= ACT I — HOOK ============= -->
+
+<!-- 1. HOOK -->
+<section class="slide hook-slide active"
+  data-notes="ÖPPNING. Vänta. Säg ingenting i 3 sekunder. Låt frågan landa. Den här presentationen ska kännas som ett samtal — inte ett möte. Tänk: du står inte framför 120 anställda. Du står med dem. Sänk axlarna. Ta tid. Frågan ska få ekona ut.">
+  <div class="eyebrow">Innan vi börjar — en fråga</div>
+  <div class="hook-question typewriter" id="hookQ"></div>
+  <div class="visual-hint">Förslag: ljusdämpat<br/>fokus på dig som talar</div>
+</section>
+
+<!-- 2. PAYOFF -->
+<section class="slide hook-slide"
+  data-notes="PAYOFF. Säg det långsamt. 'Det dyraste vi säljer i sommar är inte mat. Det är inte vin. Det är förtroende.' Pausa. Förklara: en gäst som väljer oss ger oss två timmar av sitt liv som hen aldrig får tillbaka. Vissa har sparat hela året. Det är vår handelsvara — och den får vi inte sumpa. Det här är hjärtat i hela presentationen.">
+  <div class="eyebrow">Svaret</div>
+  <h2 style="text-align:center; max-width: 1200px;">Det dyraste vi säljer<br/>är inte mat. Det är <span class="gold">förtroende</span>.</h2>
+  <div class="gold-rule"></div>
+  <p class="lead" style="text-align:center; margin: 0 auto;">Och det är vår viktigaste affär i sommar. Allt annat följer av det.</p>
+</section>
+
+<!-- 3. SCEN -->
+<section class="slide"
+  data-notes="STORYTELLING. Berätta scenen som om du själv är familjen. Sänk rösten. Det här är en empati-övning. Två minuter, max. Gå sen vidare till 'det är vi som möter dem'.">
+  <div class="eyebrow">Föreställ dig</div>
+  <h2>En familj. <span class="gold">Två veckor i juli.</span></h2>
+  <div style="max-width: 1100px;">
+    <p style="margin-bottom: 1.2rem;">De har sparat i ett år. Två vuxna, tre barn. Det är 19:30 en torsdag och de kliver in på en av våra restauranger. Mamman är trött. Pappa har huvudvärk. Yngsta barnet är hungrigt och börjar bli grinig.</p>
+    <p style="margin-bottom: 1.2rem;">Det här är inget skift för oss. Det här är deras semester.</p>
+    <p class="lead gold">Vad de möter under de första 90 sekunderna avgör om kvällen blir minnesvärd — eller en sak de pratar surt om i bilen hem.</p>
+    <p style="margin-top: 1.5rem;">Och det är inte chefen som möter dem. Det är du.</p>
+  </div>
+  <div class="visual-hint">Förslag: bild av en gäst<br/>som ler — eller solnedgång<br/>över Västerviks hamn</div>
+</section>
+
+<!-- ============= ACT II — VILKA ÄR VI ============= -->
+
+<!-- 4. RESAN -->
+<section class="slide"
+  data-notes="VÅR RESA. Snabbt — 60 sekunder. Poängen är inte historielektion, det är att visa att vi vuxit organiskt. Stanna lite extra på 2025: 'från ett kök till sju krogar — på 23 år'. Det är en mening som imponerar utan att skryta.">
+  <div class="eyebrow">Akt II — Vilka vi är</div>
+  <h2>Från ett kök <span class="gold">till sju krogar</span></h2>
+  <div class="timeline">
+    <svg viewBox="0 0 1500 4" preserveAspectRatio="none">
+      <path class="timeline-path" d="M 0,2 Q 750,2 1500,2" />
+    </svg>
+    <div class="timeline-row">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2002</div>
+        <div class="tl-text">Blå köket på Västerviks resort — där det började.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2007</div>
+        <div class="tl-text">GK Restauranger grundas.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2012</div>
+        <div class="tl-text">Guldkant Västervik öppnar i hjärtat av hamnen.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2022–25</div>
+        <div class="tl-text">Vimmerby + Bello, Medi och Kajsas på resorten.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2026</div>
+        <div class="tl-text">Sociala — nytt lounge-format på Vimmerby sommartorg.</div>
+      </div>
+    </div>
+  </div>
+  <p style="margin-top: 3rem; opacity: 0.75; font-style: italic;" class="no-anim">De senaste två åren har vi i snitt öppnat två nya verksamheter per säsong.</p>
+</section>
+
+<!-- 5. SOMMAREN I SIFFROR -->
+<section class="slide"
+  data-notes="SIFFRORNA. Säg dem långsamt — låt varje ploppa upp innan du säger nästa. Sju. (paus) Hundratjugo. (paus) Femtusen boende på resorten. (paus) Tusen pizzor om dagen. Slutsats: 'Det här är inte ett sommarjobb. Det är en operation.' Och: 'Och samtidigt — varje gäst ska känna att de är vår enda gäst.' Det är spänningen. Det är poängen.">
+  <div class="eyebrow">Sommaren 2026</div>
+  <h2>Det här är vad <span class="gold">som väntar</span></h2>
+  <p class="lead" style="font-size: 1.5rem;">Vår största säsong någonsin — i alla bemärkelser.</p>
+  <div class="stat-grid">
+    <div class="stat-big">
+      <div class="num count" data-target="7">0</div>
+      <div class="label">Restauranger</div>
+    </div>
+    <div class="stat-big">
+      <div class="num count" data-target="120" data-prefix="~">0</div>
+      <div class="label">Medarbetare</div>
+    </div>
+    <div class="stat-big">
+      <div class="num count" data-target="5000" data-format="space">0</div>
+      <div class="label">Boende på resorten</div>
+    </div>
+    <div class="stat-big">
+      <div class="num count" data-target="1000" data-format="space">0</div>
+      <div class="label">Pizzor om dagen i högsäsong</div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. VI SOM STYR -->
+<section class="slide"
+  data-notes="ÄGARNA. Snabb introduktion — alla ska känna ansiktena. Säg vad varje person står för i två meningar. Avsluta med 'och alla av oss är på plats hela säsongen — kom fram, säg hej, ställ frågor'.">
+  <div class="eyebrow">Ledningen som tar oss in i sommaren</div>
+  <h2>Familjen <span class="gold">bakom</span> Guldkant</h2>
+  <p class="lead">Tre namn. Ett uppdrag. På plats hela säsongen.</p>
+  <div class="chefs-row" style="grid-template-columns: repeat(3, 1fr); max-width: 900px; margin-left: auto; margin-right: auto;">
+    <div class="chef-card"><div class="chef-initial">EH</div><div class="chef-name">Erik Hemmingsson</div><div class="chef-title">VD · CEO</div></div>
+    <div class="chef-card"><div class="chef-initial">JS</div><div class="chef-name">Jonas Settlin</div><div class="chef-title">Inköpschef</div></div>
+    <div class="chef-card"><div class="chef-initial">JL</div><div class="chef-name">Jens Liljeberg</div><div class="chef-title">Ekonomichef</div></div>
+  </div>
+</section>
+
+<!-- 6b. EN KRÖGARES VARDAG (à la Erik-pitchen) -->
+<section class="slide"
+  data-notes="EN KRÖGARES VARDAG. Det här är där du är personlig. Säg: 'Innan vi pratar mål — vill jag att ni ska veta vad min vardag faktiskt är. Sex rutor. Det är jobbet.' Gå igenom rutorna i ordning, korta meningar. Min Roll → Utmaningar → Tillgångar → De roligaste → De jobbigaste → Omvärlden. Avslutning: 'Det här är jag. Och det är därför jag behöver er.' Det skapar ett band innan målen kommer.">
+  <div class="eyebrow">Innan jag pratar mål</div>
+  <h2>En krögares vardag <span class="gold">i sex rutor</span></h2>
+  <p class="lead" style="font-size: 1.3rem; margin-bottom: 0.5rem;">Det här är vad jag faktiskt gör — och vad som tar mig vaken på nätterna.</p>
+
+  <div class="six-grid">
+    <div class="pitch-card accent-blue">
+      <div class="pitch-card-head">
+        <div class="pitch-icon bg-blue">◉</div>
+        <h3>Min roll</h3>
+      </div>
+      <ul>
+        <li>Ledarskap i drift och utveckling</li>
+        <li>Ekonomi, meny, gästupplevelse</li>
+        <li>Kultur- och teambyggande</li>
+      </ul>
+    </div>
+
+    <div class="pitch-card accent-red">
+      <div class="pitch-card-head">
+        <div class="pitch-icon bg-red">⚠</div>
+        <h3>Våra utmaningar</h3>
+      </div>
+      <ul>
+        <li>Personal- och kompetensförsörjning</li>
+        <li>Kostnadsökningar och marginalpress</li>
+        <li>Svängande efterfrågan och säsong</li>
+      </ul>
+    </div>
+
+    <div class="pitch-card accent-emerald">
+      <div class="pitch-card-head">
+        <div class="pitch-icon bg-emerald">✓</div>
+        <h3>Våra tillgångar</h3>
+      </div>
+      <ul>
+        <li>Starkt team och värdskap</li>
+        <li>Läget i Västervik och lojala gäster</li>
+        <li>Tydligt koncept och processer</li>
+      </ul>
+    </div>
+
+    <div class="pitch-card accent-amber">
+      <div class="pitch-card-head">
+        <div class="pitch-icon bg-amber">☺</div>
+        <h3>De roligaste</h3>
+      </div>
+      <ul>
+        <li>Skapa minnesvärda kvällar</li>
+        <li>Menyutveckling och events</li>
+        <li>Samarbeten och gästspel</li>
+      </ul>
+    </div>
+
+    <div class="pitch-card accent-gray">
+      <div class="pitch-card-head">
+        <div class="pitch-icon bg-gray">⏱</div>
+        <h3>De jobbigaste</h3>
+      </div>
+      <ul>
+        <li>Schemaläggning och kort varsel</li>
+        <li>Leverans- och råvarustrul</li>
+        <li>Aldrig medelmåttig — alltid på tå</li>
+      </ul>
+    </div>
+
+    <div class="pitch-card accent-violet">
+      <div class="pitch-card-head">
+        <div class="pitch-icon bg-violet">◐</div>
+        <h3>Omvärlden</h3>
+      </div>
+      <ul>
+        <li>Turism, säsonger och trender</li>
+        <li>Ekonomiläget och beteenden</li>
+        <li>Digitalisering och nya kanaler</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. AFFÄRSIDÉ -->
+<section class="slide"
+  data-notes="AFFÄRSIDÉN. Läs den långsamt. Ord för ord. 'Prisvärt. Kreativt. Generöst.' Stanna efter generöst. Säg sen: 'Notera ordet generöst. Det är inte bara om priset. Det är om allt.' Det här länkar till nästa slide om kärnvärdena.">
+  <div class="eyebrow">Vår affärsidé</div>
+  <h2>Det här är <span class="gold">varför</span> vi finns</h2>
+  <div class="pull-quote">På ett prisvärt och kreativt sätt sälja generösa restaurang- och restaurangrelaterade upplevelser där vi skapar Guldkant på gästernas tillvaro.</div>
+  <p style="max-width: 1000px;">Vi finns för den som släntrar in en enstaka gång — och för den som hänger hos oss flera dagar i veckan. Locals och turister. Festsugna eller ensamätare. <span style="color: var(--gk-gold-bright); font-style: italic;">Vi hittar en stol till alla hyggliga medborgare.</span></p>
+</section>
+
+<!-- 8. TRE G -->
+<section class="slide"
+  data-notes="KÄRNVÄRDENA. Det här är hjärtat. Ta tid. Säg: 'Tre ord. Det är hela vår strategi sammanfattad.' Beröring efter varje G — Gemenskap (vi mot gästerna, vi mot varandra), Generositet (att ge mer än man får), Glädje (det är ett krav, inte en slogan). Avsluta: 'Om du bara minns en sak från idag — minns dessa tre.'">
+  <div class="eyebrow">Våra kärnvärden</div>
+  <h2 style="margin-bottom: 3rem;">Tre <span class="gold">G:n</span></h2>
+  <div class="three-g">
+    <div class="g-card"><div class="letter">G</div><h3>Gemenskap</h3><p>Vi finns för vänner och ovänner, barn och föräldrar. Och för varandra.</p></div>
+    <div class="g-card"><div class="letter">G</div><h3>Generositet</h3><p>Ge mer än du får. Det smittar av sig — på gäster och på kollegor.</p></div>
+    <div class="g-card"><div class="letter">G</div><h3>Glädje</h3><p>Vi har kul på jobbet. Det är inte en slogan. Det är ett krav.</p></div>
+  </div>
+</section>
+
+<!-- 9. METAFOR (skepp) -->
+<section class="slide"
+  data-notes="METAFOR. Det här är en av de viktigaste sliderna — en mental bild de tar med sig hem. 'Vi är inte sju båtar. Vi är ett skepp.' Förklara: en pizzakock på Bello kan rädda en kväll på Kajsas. En servitör på Sociala kan tipsa en gäst om Guldkant Vimmerby. Vi seglar ihop. Vi sjunker ihop. Vi vinner ihop.">
+  <div class="eyebrow">En metafor som hänger med</div>
+  <h2>Vi är inte sju båtar.<br/>Vi är <span class="gold">ett skepp.</span></h2>
+  <div class="metaphor-stage">
+    <svg class="ship-svg" viewBox="0 0 900 280">
+      <!-- waves -->
+      <path class="wave" d="M 0,200 Q 100,190 200,200 T 400,200 T 600,200 T 800,200 T 1000,200" />
+      <path class="wave" d="M 0,220 Q 100,212 200,220 T 400,220 T 600,220 T 800,220 T 1000,220" style="opacity:0.4" />
+      <path class="wave" d="M 0,240 Q 100,232 200,240 T 400,240 T 600,240 T 800,240 T 1000,240" style="opacity:0.25" />
+      <!-- ship -->
+      <g class="ship-group" transform="translate(450, 120)">
+        <!-- mast -->
+        <line x1="0" y1="-90" x2="0" y2="60" stroke="#c9a961" stroke-width="2"/>
+        <!-- big sail -->
+        <polygon class="sail" points="0,-85 80,40 0,40" />
+        <!-- small sail -->
+        <polygon class="sail" points="0,-70 -55,30 0,30" style="animation-delay:.3s" />
+        <!-- hull -->
+        <path class="ship-body" d="M -130,55 Q -110,90 -90,90 L 90,90 Q 110,90 130,55 Z" />
+        <!-- flag -->
+        <polygon points="0,-90 25,-83 0,-76" fill="#e6c989" />
+        <!-- glow on flag -->
+        <circle cx="0" cy="-83" r="3" fill="#fff" opacity="0.7"/>
+      </g>
+    </svg>
+  </div>
+  <p class="lead" style="margin: 0 auto; text-align: center; max-width: 900px;">En kock på Bello kan rädda en kväll på Kajsas. Vi seglar ihop. Vi vinner ihop.</p>
+</section>
+
+<!-- ============= ACT III — UPPDRAGET ============= -->
+
+<!-- 10. VISION -->
+<section class="slide"
+  data-notes="VISIONEN. Bygg drama: 'Var ska vi vara om tre år?' (paus) Läs visionen. Stanna på 'minst 15% lönsamhet'. Säg: 'Det är inte ett rikedomsmål. Det är ett överlevnadsmål — för att kunna fortsätta investera i er, i lokalerna, i utbildningarna.'">
+  <div class="eyebrow">Akt III — Uppdraget · 3 år framåt</div>
+  <h2>Var vi <span class="gold">ska vara</span> 2029</h2>
+  <div class="pull-quote">Vi skapar lönsamma och minnesvärda restaurangupplevelser året runt — livfulla och snabbrörliga på sommaren, exklusiva och värmande på vintern.</div>
+  <div style="margin-top: 2rem; padding: 2rem; background: linear-gradient(135deg, rgba(201,169,97,0.1), transparent); border-radius: 14px; border: 1px solid rgba(201,169,97,0.25); max-width: 700px;">
+    <div class="eyebrow" style="margin-bottom: 0.5rem;">Mätbart mål</div>
+    <p style="font-size: 1.4rem; opacity: 1; color: var(--gk-cream);" class="no-anim"><span style="color: var(--gk-gold-bright); font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic;">Minst 15%</span> lönsamhet och positivt kassaflöde — varje säsong.</p>
+  </div>
+</section>
+
+<!-- 11. UPPDRAG 1 — EKONOMI -->
+<section class="slide"
+  data-notes="EKONOMI. Snabbt — bullet-point, inte förklaring av varje siffra. Säg: 'Det här är ramen. Allt annat ska få plats inom den.' Stanna på personalkostnader −2%: 'Det betyder INTE att ni jobbar mer för mindre. Det betyder att vi planerar bättre.'">
+  <div class="eyebrow">Uppdrag · 1 av 4</div>
+  <h2>Den <span class="gold">finansiella</span> ramen</h2>
+  <p class="lead" style="font-size: 1.4rem;">Inte för att vi älskar siffror. För att de håller skeppet flytande.</p>
+  <div class="metric-panels">
+    <div class="metric"><div class="target">+10%</div><div class="what">Öka omsättningen jämfört med föregående år</div></div>
+    <div class="metric"><div class="target">6%</div><div class="what">Öka vinstmarginalen</div></div>
+    <div class="metric"><div class="target">−2%</div><div class="what">Minska personalkostnader (smartare scheman, inte längre pass)</div></div>
+    <div class="metric"><div class="target">−2%</div><div class="what">Minska råvarukostnader (bättre svinn-koll)</div></div>
+    <div class="metric"><div class="target">15%</div><div class="what">Öka soliditeten</div></div>
+  </div>
+</section>
+
+<!-- 12. UPPDRAG 2 — GÄSTUPPLEVELSE -->
+<section class="slide"
+  data-notes="GÄSTUPPLEVELSE. Det här är där hooken kopplas in igen — förtroendet vi öppnade med. Säg: 'Kommer ni ihåg förtroendet vi pratade om? DET är hur vi mäter det. Fyra stjärnor. Tio procent fler recensioner. Det är hur vi vet om vi förtjänat det.'">
+  <div class="eyebrow">Uppdrag · 2 av 4</div>
+  <h2>Gäst<span class="gold">upplevelse</span></h2>
+  <p class="lead" style="font-size: 1.4rem;">Vårt enda och viktigaste fokus — hur är vi relevanta varje vecka, året om?</p>
+  <div class="metric-panels">
+    <div class="metric"><div class="target">★ 4,0+</div><div class="what">Snittbetyg på Google — samtliga restauranger (Bello undantaget)</div></div>
+    <div class="metric"><div class="target">★ 4,0+</div><div class="what">Snittbetyg på TripAdvisor — samtliga (Bello undantaget)</div></div>
+    <div class="metric"><div class="target">+10%</div><div class="what">Fler kundrecensioner per enhet jämfört med 2024</div></div>
+  </div>
+  <p style="margin-top: 2rem; opacity: 0.75; font-style: italic;" class="no-anim">Hur tar vi oss dit? Tävlingar som uppmuntrar betyg. Egna kundundersökningar. Och varje gäst — varje gång.</p>
+</section>
+
+<!-- 13. UPPDRAG 3 — MÄNNISKOR -->
+<section class="slide"
+  data-notes="MÄNNISKOR. Här är där vi investerar i dem. Säg: 'Det här är vår viktigaste rad. Vi vill inte bara att ni jobbar här. Vi vill att ni ÄR här.' Sänk rösten. Tala konkret — fler personalmöten, mer utbildning på golvet, ledare som byggs inifrån.">
+  <div class="eyebrow">Uppdrag · 3 av 4</div>
+  <h2>Människor & <span class="gold">utveckling</span></h2>
+  <p class="lead" style="font-size: 1.4rem;">Vår viktigaste resurs är inte recepten eller lokalerna. Det är ni.</p>
+  <ul class="bullets">
+    <li><strong>Minst 1 kompetensutvecklingsinsats per anställd</strong> under året.</li>
+    <li><strong>Internt utbildningsprogram för ansvariga</strong> — vi bygger ledare inifrån.</li>
+    <li><strong>Regelbundna personalmöten</strong> där frågor och idéer tas på allvar.</li>
+    <li><strong>Utvecklingssamtal med din chef</strong> — när det behövs, inte enligt mall.</li>
+  </ul>
+</section>
+
+<!-- 14. UPPDRAG 4 — HÅLLBARHET, AI, MARKNAD -->
+<section class="slide"
+  data-notes="DET SISTA UPPDRAGET. Snabb — det här är 'och så här bygger vi framtiden'. AI-bitarna är där vi snabbt nämner att vi automatiserar tråk-jobbet så ni får tid till gästjobbet. Det är säljpoängen.">
+  <div class="eyebrow">Uppdrag · 4 av 4</div>
+  <h2>Hållbarhet, varumärke & <span class="gold">framtid</span></h2>
+  <div class="metric-panels">
+    <div class="metric"><div class="target">75%</div><div class="what">Korrekta portionsstorlekar vid mätning</div></div>
+    <div class="metric"><div class="target">75%</div><div class="what">Manualer används vid mätning</div></div>
+    <div class="metric"><div class="target">+30%</div><div class="what">Fler följare på sociala medier — totalt</div></div>
+    <div class="metric"><div class="target">10%</div><div class="what">Frigjord arbetstid via AI-lösningar</div></div>
+    <div class="metric"><div class="target">2 st</div><div class="what">Användbara AI-agenter anpassade för bolaget</div></div>
+    <div class="metric"><div class="target">100%</div><div class="what">Automatiserad månadsrapportering till ledning</div></div>
+  </div>
+</section>
+
+<!-- ============= ACT IV — STAKES ============= -->
+
+<!-- 14a. BRANSCHEN I FÖRÄNDRING (à la Erik-pitchen) -->
+<section class="slide"
+  data-notes="BRANSCHEN I FÖRÄNDRING. Säg: 'Vi har varit med om mycket. Vi har anpassat oss varje gång. Det är inte ny information för oss — det är vår normalbild.' Gå igenom snabbt: Covid (vi öppnade takeaway, digitala bokningar). #metoo (vi blev tydliga med rutiner). Elkris (vi optimerade scheman). Klimat (vi hand­lade lokalt). Avslutning: 'Förändring är vår konstant. Det här är därför jag inte är orolig — och därför ni inte heller behöver vara det.'">
+  <div class="eyebrow">Akt IV — Vad vi redan klarat</div>
+  <h2>Branschen <span class="gold">i förändring</span></h2>
+  <p class="lead" style="font-size: 1.3rem;">Vi har anpassat oss förut. Det är därför jag inte är orolig nu.</p>
+
+  <div class="change-row">
+    <div class="change-item">
+      <div class="pitch-icon bg-blue">⊕</div>
+      <div>
+        <h4>Covid-19 <span class="badge" style="font-size:0.6rem;">2020–21</span></h4>
+        <p>Takeaway, digitala bokningar, utökad uteservering — vi byggde nytt på två veckor.</p>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="pitch-icon bg-red">♥</div>
+      <div>
+        <h4>#metoo <span class="badge" style="font-size:0.6rem;">Kultur</span></h4>
+        <p>Nolltolerans, tryggare rutiner, modernt ledarskap — det här är hur vi jobbar idag.</p>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="pitch-icon bg-amber">⚡</div>
+      <div>
+        <h4>Elkris & inflation <span class="badge" style="font-size:0.6rem;">2022–23</span></h4>
+        <p>Energisnåla processer, menyoptimering, smartare scheman — vi blev tightare.</p>
+      </div>
+    </div>
+    <div class="change-item">
+      <div class="pitch-icon bg-emerald">⛅</div>
+      <div>
+        <h4>Klimat & råvaror <span class="badge" style="font-size:0.6rem;">Framtid</span></h4>
+        <p>Säsongsinköp, lokala leverantörer, svinnkontroll — vi tar steg varje år.</p>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top: 2.5rem; font-style: italic; opacity: 0.8;" class="no-anim">"Förändring är vår konstant."</p>
+</section>
+
+<!-- 14b. SOCIALA SPOTLIGHT — sommarens nya barn -->
+<section class="slide"
+  data-notes="SOCIALA. Det här är vår nya satsning — vårt sjunde ben. Lyfta fram det med stolthet, men också ärligt: det här är ett nytt format för oss. Ingen av oss har drivit en pinsa-lounge förut. Lista utmaningarna utan att låta orolig — räkna upp dem som någon som vet vad som ska göras. Avsluta med 'och det här är där JAG personligen kommer behöva er hjälp mest. Säg ifrån när något inte funkar. Snabbt.'">
+  <div class="eyebrow">Sommarens nya barn</div>
+  <h2>Spotlight: <span class="gold" style="background: linear-gradient(135deg, #f4d03f, #c9a961); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Sociala</span></h2>
+  <p class="lead" style="font-size: 1.4rem; max-width: 1100px;">En italiensk lounge mitt på Vimmerby sommartorg. Pinsa, Aperol, iskall ljus lager — gult och vitrandigt. Öppet alla dagar, eftermiddag till kväll.</p>
+
+  <h3 style="font-size: 1.5rem; margin: 2.5rem 0 0.5rem; color: #f4d03f;">Det här är vad vi måste klara</h3>
+  <ul class="bullets" style="margin-top: 0.5rem;">
+    <li><strong>Ett helt nytt format</strong> — ingen av oss har drivit en pinsa-lounge förut. Vi lär oss medan vi bygger.</li>
+    <li><strong>Att förklara pinsa</strong> — många gäster vet inte vad det är. Personalen är därför vår bästa marknadsföring.</li>
+    <li><strong>Lounge-läget eftermiddag–kväll</strong> — fånga aw-stämningen utan att tappa kvällsmaten.</li>
+    <li><strong>Synergi med Guldkant Vimmerby</strong> — två koncept som drar nytta av varandra. Inte kannibalism.</li>
+    <li><strong>Sommartorgets väder</strong> — beroendet av att Vimmerby vågar gå ut. Backup när det regnar.</li>
+    <li><strong>Bemanning mitt i säsongen</strong> — vi rekryterar och utbildar samtidigt som ni andra kör för fullt.</li>
+  </ul>
+</section>
+
+<!-- 15. UTMANINGAR -->
+<section class="slide"
+  data-notes="ÄRLIGHET. Det här är en VD som inte sockrar. Säg: 'Jag vill inte stå här och låtsas att allt är frid och fröjd.' Sedan vandra igenom de fyra utmaningarna långsamt. Stanna på 'kvalitet vid skala' — det är den största. Personal sliter ofta för att ledningen tappar fokus när vi växer. Erkänn det.">
+  <div class="eyebrow">Akt IV — Vad jag ligger sömnlös för</div>
+  <h2>Sommarens <span class="gold">utmaningar</span></h2>
+  <p class="lead" style="font-size: 1.3rem; max-width: 1000px;">Det vore tjusigt att låtsas allt är frid och fröjd — men vi växer fort, och det ställer höga krav på oss alla.</p>
+
+  <div style="margin-top: 2rem; max-width: 1100px;">
+    <div class="challenge"><h4>Att hålla kvalitet när vi skalar</h4><p>Sju krogar, ~120 medarbetare. Vår storlek får aldrig bli en ursäkt — varje gäst ska känna att hen är vår viktigaste.</p></div>
+    <div class="challenge"><h4>Säsongsdynamiken — från 0 till 100 på två veckor</h4><p>Förberedelse, manualer och tydliga ansvarsområden är skillnaden mellan ett bra skift och kaos.</p></div>
+    <div class="challenge"><h4>Personalkostnader vs. servicegrad</h4><p>Vi vill minska personalkostnader med 2% — utan att tappa generositeten. Det går bara med smartare scheman och att vi hjälps åt över avdelningar.</p></div>
+    <div class="challenge"><h4>Bli relevanta — varje vecka, året om</h4><p>Det är inte marknadsavdelningens fråga. Det är allas.</p></div>
+  </div>
+</section>
+
+<!-- 16. THE WEEKLY QUESTION -->
+<section class="slide hook-slide"
+  data-notes="DEN STORA FRÅGAN. Det här är CTA:n för hela presentationen. Säg det tre gånger om du måste. 'Hur är vi relevanta för våra gäster JUST denna vecka?' Be dem skriva ner den. Eller säga den till sin chef varje måndag morgon. Det är den enda fråga som måste ställas.">
+  <div class="eyebrow">Frågan vi ska ställa varje vecka</div>
+  <h2 style="font-size: clamp(2.2rem, 5vw, 4.5rem); text-align: center; max-width: 1200px; line-height: 1.15;">Hur är vi <span class="gold">relevanta</span><br/>för våra gäster<br/>just <em style="font-style:italic;">denna</em> vecka?</h2>
+  <div class="gold-rule"></div>
+  <p style="text-align:center; margin: 0 auto; max-width: 700px;" class="no-anim">Det är inte mitt jobb att svara på den. Det är inte din chefs jobb. Det är våra. Tillsammans. Varje måndag morgon.</p>
+</section>
+
+<!-- ============= ACT V — CALL TO ACTION ============= -->
+
+<!-- 17. AVTALET -->
+<section class="slide"
+  data-notes="AVTALET. Säg: 'Det här är jag, så här jobbar jag.' Vänster kolumn — det vi förväntar oss. Inget krav som inte borde vara självklart. Höger kolumn — det vi lovar tillbaka. 'Det är ett avtal. Vi håller vår sida — håll er.'">
+  <div class="eyebrow">Akt V — Vårt avtal med varandra</div>
+  <h2>Förväntningar — <span class="gold">åt båda håll</span></h2>
+  <div class="expect-grid">
+    <div class="expect-col">
+      <h3>Vad vi förväntar av dig</h3>
+      <ul>
+        <li>Att du är på plats i god tid innan ditt pass</li>
+        <li>Att du är instämplad när du jobbar — alltid</li>
+        <li>Att du följer alkohol-, drog- och säkerhetspolicy</li>
+        <li>Att du jobbar aktivt för din egen utveckling</li>
+        <li>Att du visar prestigelöshet och hjälper kollegor</li>
+        <li>Att du är ambassadör för Guldkant — också online</li>
+      </ul>
+    </div>
+    <div class="expect-col">
+      <h3>Vad du kan förvänta av oss</h3>
+      <ul>
+        <li>Schema 2 veckor framåt — du kan planera ditt liv</li>
+        <li>Ett lagat mål mat per pass över 4 timmar</li>
+        <li>Utvecklingssamtal med chefen när det behövs</li>
+        <li>Personalaktiviteter — öl, vin, minigolf, kubb, föreläsningar</li>
+        <li>En arbetsmiljö fri från mobbning och trakasserier</li>
+        <li>Ett öppet öra — Erik (HR) och din chef finns där</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 18. CALL TO ACTION -->
+<section class="slide"
+  data-notes="CTA. Konkret. Säg: 'Innan ni går härifrån idag — ta en sak med er. Bara en.' Sen läs alternativen. Säg att du kommer fråga om en månad. Det skapar ansvar utan att kännas hot. Avsluta med 'och om ni inte vet vilken — ta dom alla tre'.">
+  <div class="eyebrow">Innan ni går härifrån</div>
+  <h2>Ta <span class="gold">en sak</span> med dig</h2>
+  <p class="lead" style="font-size: 1.4rem; max-width: 1000px;">Inte tre. Inte tio. En. Det är så förändring fastnar.</p>
+  <ul class="bullets" style="margin-top: 1.5rem;">
+    <li><strong>Den dyraste varan</strong> är förtroende — agera som om gästen sparat ett år på den.</li>
+    <li><strong>Tre G:n</strong> — Gemenskap, Generositet, Glädje. I den ordningen.</li>
+    <li><strong>Ett skepp</strong>, inte sju båtar — hjälp över gränser, inte revir.</li>
+    <li><strong>Veckans fråga</strong> — hur är vi relevanta just denna vecka?</li>
+    <li><strong>Be om hjälp</strong>. Ge beröm. Ha kul. (Det är jobbet.)</li>
+  </ul>
+</section>
+
+<!-- 19. CLOSE -->
+<section class="slide title-slide"
+  data-notes="AVSLUT. Bygg upp till sista linjen. Säg: 'Det är inte mitt företag jag bjuder in er till. Det är vårt företag i sommar.' Pausa. 'Nu kör vi järnet — tillsammans.' Räck ut handen. Tackar för uppmärksamheten. Bjud in på frågor.">
+  <h1 style="font-size: clamp(3rem, 7vw, 6.5rem); line-height: 1.05;">Nu kör vi <em>järnet</em><br/>tillsammans.</h1>
+  <div class="gold-rule"></div>
+  <p class="tagline">Det är inte mitt företag jag bjuder in er till. Det är <span style="color: var(--gk-gold-bright);">vårt</span> företag i sommar.</p>
+  <p class="speaker">Erik · Jonas · Jens</p>
+</section>
+
+<!-- 20. TACK / CONFETTI -->
+<section class="slide final-slide" data-confetti="true"
+  data-notes="TACK + FRÅGOR. Vänd över till frågestund. Konfetti utlöses automatiskt på den här sliden. Bjud in alla att stanna kvar och prata över en drink.">
+  <h2>Tack.</h2>
+  <p class="signoff">Frågor, tankar, idéer — kom fram.<br/>Vi finns här hela kvällen.</p>
+  <p style="margin-top: 4rem; opacity: 0.6; font-size: 0.85rem; letter-spacing: 0.3em; text-transform: uppercase;" class="no-anim">Sommaren 2026 · Gemenskap med Guldkant</p>
+</section>
+
+<!-- ================ SPEAKER NOTES ================ -->
+<div class="notes-panel" id="notesPanel">
+  <h5>Talarnoter</h5>
+  <p id="notesText"></p>
+</div>
+
+<!-- ================ UI BAR ================ -->
+<div class="ui-bar">
+  <div class="ui-left">
+    <span class="brand-mark">Guldkant · Sommaren 2026</span>
+  </div>
+  <div class="ui-right">
+    <button class="nav-btn" id="prevBtn" aria-label="Föregående">‹</button>
+    <span class="counter" id="counter">01 / 23</span>
+    <button class="nav-btn" id="nextBtn" aria-label="Nästa">›</button>
+  </div>
+</div>
+
+<script>
+  // ============ Slides ============
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const notesPanel = document.getElementById('notesPanel');
+  const notesText = document.getElementById('notesText');
+  let current = 0;
+  let notesVisible = false;
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function go(i, dir = 'fwd') {
+    if (i < 0 || i >= slides.length) return;
+    slides.forEach((s, idx) => {
+      s.classList.remove('active', 'exited');
+      if (dir === 'back') {
+        if (idx > i) s.classList.add('exited');
+      } else {
+        if (idx < i) s.classList.add('exited');
+      }
+    });
+    slides[i].classList.add('active');
+    current = i;
+    counter.textContent = `${pad(i+1)} / ${pad(slides.length)}`;
+    progress.style.width = `${((i+1)/slides.length)*100}%`;
+    prevBtn.disabled = i === 0;
+    nextBtn.disabled = i === slides.length - 1;
+
+    // notes
+    notesText.textContent = slides[i].dataset.notes || '';
+
+    // run slide-specific FX
+    runSlideFx(slides[i]);
+  }
+
+  function next() { if (current < slides.length - 1) go(current + 1, 'fwd'); }
+  function prev() { if (current > 0) go(current - 1, 'back'); }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') { e.preventDefault(); go(0); }
+    if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+    if (e.key === 'n' || e.key === 'N') {
+      notesVisible = !notesVisible;
+      notesPanel.classList.toggle('show', notesVisible);
+    }
+    if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    }
+  });
+
+  prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prev(); });
+  nextBtn.addEventListener('click', (e) => { e.stopPropagation(); next(); });
+
+  document.querySelectorAll('.slide').forEach(s => {
+    s.addEventListener('click', (e) => {
+      if (e.target.closest('.nav-btn') || e.target.closest('.notes-panel')) return;
+      const x = e.clientX / window.innerWidth;
+      if (x > 0.4) next(); else prev();
+    });
+  });
+
+  // ============ Slide-specific FX ============
+  function runSlideFx(slide) {
+    // Typewriter on hook
+    if (slide.querySelector('#hookQ')) {
+      const target = 'Vad är det dyraste vi säljer i sommar?';
+      const el = slide.querySelector('#hookQ');
+      el.textContent = '';
+      el.classList.add('typewriter');
+      let i = 0;
+      const type = () => {
+        if (i < target.length) {
+          el.textContent = target.slice(0, ++i);
+          setTimeout(type, 50 + Math.random() * 60);
+        } else {
+          setTimeout(() => el.classList.remove('typewriter'), 1500);
+        }
+      };
+      setTimeout(type, 600);
+    }
+    // Number counters
+    slide.querySelectorAll('.count').forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      const prefix = el.dataset.prefix || '';
+      const format = el.dataset.format;
+      const dur = 1400;
+      const start = performance.now() + 400;
+      function tick(t) {
+        const p = Math.max(0, Math.min(1, (t - start) / dur));
+        const eased = 1 - Math.pow(1 - p, 3);
+        let v = Math.round(target * eased);
+        let display = v;
+        if (format === 'space') display = v.toLocaleString('sv-SE').replace(/,/g,' ');
+        el.textContent = prefix + display;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+    // Confetti on final
+    if (slide.dataset.confetti) launchConfetti();
+  }
+
+  // ============ Embers (background) ============
+  const emberField = document.getElementById('emberField');
+  function spawnEmber() {
+    const e = document.createElement('div');
+    e.className = 'ember';
+    e.style.left = Math.random() * 100 + '%';
+    e.style.bottom = '-20px';
+    e.style.animationDuration = (10 + Math.random() * 8) + 's';
+    e.style.animationDelay = '0s';
+    emberField.appendChild(e);
+    setTimeout(() => e.remove(), 18000);
+  }
+  setInterval(spawnEmber, 1100);
+
+  // ============ Confetti ============
+  const confettiCanvas = document.getElementById('confetti');
+  const ctx = confettiCanvas.getContext('2d');
+  let confettiPieces = [];
+  let confettiActive = false;
+
+  function resizeCanvas() {
+    confettiCanvas.width = window.innerWidth;
+    confettiCanvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const colors = ['#c9a961', '#e6c989', '#f5efe1', '#d97a7a', '#5fa8a5'];
+  function launchConfetti() {
+    confettiPieces = [];
+    for (let i = 0; i < 160; i++) {
+      confettiPieces.push({
+        x: window.innerWidth / 2 + (Math.random() - 0.5) * 200,
+        y: window.innerHeight / 2,
+        vx: (Math.random() - 0.5) * 12,
+        vy: (Math.random() - 1.5) * 12 - 4,
+        w: 5 + Math.random() * 7,
+        h: 8 + Math.random() * 12,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.2,
+        life: 0
+      });
+    }
+    if (!confettiActive) { confettiActive = true; animateConfetti(); }
+  }
+  function animateConfetti() {
+    ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    confettiPieces.forEach(p => {
+      p.vy += 0.25;
+      p.vx *= 0.99;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.life++;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.max(0, 1 - p.life / 200);
+      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+      ctx.restore();
+    });
+    confettiPieces = confettiPieces.filter(p => p.y < confettiCanvas.height + 50 && p.life < 200);
+    if (confettiPieces.length > 0) {
+      requestAnimationFrame(animateConfetti);
+    } else {
+      confettiActive = false;
+      ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+    }
+  }
+
+  // ============ Init ============
+  go(0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Personalsida · Guldkant Sommaren 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gk-midnight: #0a1628;
+    --gk-deep: #142847;
+    --gk-blue: #1d3a5f;
+    --gk-gold: #c9a961;
+    --gk-gold-bright: #e6c989;
+    --gk-gold-deep: #8b7340;
+    --gk-cream: #f5efe1;
+    --gk-paper: #faf6ec;
+    --gk-rose: #d97a7a;
+    --gk-teal: #2d6463;
+    --gk-charcoal: #1a1f2e;
+    --shadow-lg: 0 30px 80px -20px rgba(0,0,0,0.5);
+    --shadow-md: 0 12px 40px -10px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--gk-midnight);
+    color: var(--gk-cream);
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.15;
+  }
+
+  /* ====== HERO ====== */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+      radial-gradient(ellipse at top, rgba(201,169,97,0.18), transparent 60%),
+      radial-gradient(ellipse at bottom, rgba(45,100,99,0.25), transparent 70%),
+      linear-gradient(180deg, #0a1628 0%, #142847 50%, #0a1628 100%);
+  }
+  .stars {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 18%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1px 1px at 28% 65%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1.2px 1.2px at 47% 22%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 63% 80%, rgba(255,255,255,0.7), transparent),
+      radial-gradient(1.4px 1.4px at 79% 35%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1px 1px at 90% 62%, rgba(255,255,255,0.55), transparent),
+      radial-gradient(1.2px 1.2px at 8% 78%, rgba(255,255,255,0.5), transparent),
+      radial-gradient(1px 1px at 36% 92%, rgba(255,255,255,0.6), transparent),
+      radial-gradient(1.3px 1.3px at 55% 45%, rgba(255,255,255,0.5), transparent);
+    animation: twinkle 6s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+  }
+  .hero-glow {
+    position: absolute;
+    width: 800px; height: 800px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,97,0.18) 0%, transparent 70%);
+    top: -200px; right: -200px;
+    filter: blur(40px);
+    animation: float 20s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0,0); }
+    50% { transform: translate(-50px, 30px); }
+  }
+  /* Aurora — flytande färgglöd över hero */
+  .aurora {
+    position: absolute;
+    inset: -20%;
+    background:
+      radial-gradient(ellipse 60% 30% at 30% 30%, rgba(201,169,97,0.18), transparent 60%),
+      radial-gradient(ellipse 50% 25% at 70% 60%, rgba(95,168,165,0.15), transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 80%, rgba(217,122,122,0.10), transparent 60%);
+    filter: blur(40px);
+    animation: auroraFlow 22s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes auroraFlow {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(-3%, 2%) scale(1.05); }
+    66% { transform: translate(2%, -3%) scale(0.98); }
+  }
+  /* Embers — flytande gnistor */
+  .ember-field {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .ember {
+    position: absolute;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(230,201,137,0.9), rgba(201,169,97,0));
+    pointer-events: none;
+    animation: rise 14s linear infinite;
+    opacity: 0;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
+  }
+  .hero-content {
+    text-align: center;
+    z-index: 2;
+    max-width: 900px;
+    padding: 2rem;
+    animation: fadeUp 1.2s ease-out;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .pre-title {
+    font-size: 0.85rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    font-weight: 400;
+    background: linear-gradient(135deg, #f5efe1 0%, #e6c989 50%, #c9a961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+    min-height: 1.2em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, #e6c989 0%, #c9a961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  /* Typewriter caret för hero */
+  .typewriter::after {
+    content: '|';
+    -webkit-text-fill-color: var(--gk-gold);
+    color: var(--gk-gold);
+    animation: blink 1s steps(2) infinite;
+    margin-left: 4px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+    font-style: italic;
+    color: var(--gk-cream);
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+  .hero-divider {
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gk-gold), transparent);
+    margin: 2rem auto;
+  }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gk-gold);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    animation: bob 2.5s ease-in-out infinite;
+  }
+  @keyframes bob {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ====== STICKY TAB NAV ====== */
+  .tab-nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10, 22, 40, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201, 169, 97, 0.18);
+  }
+  .tab-nav {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 1rem;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    color: var(--gk-cream);
+    opacity: 0.55;
+    padding: 1.25rem 1.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { opacity: 0.9; color: var(--gk-gold-bright); }
+  .tab-btn.active {
+    opacity: 1;
+    color: var(--gk-gold-bright);
+  }
+  .tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1.4rem;
+    right: 1.4rem;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gk-gold), transparent);
+  }
+
+  /* ====== TAB PANELS ====== */
+  main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 8rem;
+  }
+  .panel {
+    display: none;
+    animation: panelIn 0.6s ease-out;
+  }
+  .panel.active { display: block; }
+  @keyframes panelIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .panel-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .panel-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    margin-bottom: 1rem;
+  }
+  .panel-header h2 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+  }
+  .panel-header p {
+    max-width: 580px;
+    margin: 0 auto;
+    opacity: 0.75;
+    font-size: 1.05rem;
+  }
+
+  /* ====== TYPOGRAPHY HELPERS ====== */
+  .lead {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--gk-cream);
+    opacity: 0.92;
+  }
+  .gold { color: var(--gk-gold-bright); }
+  .text-block { max-width: 720px; margin: 0 auto; }
+  .text-block p { margin-bottom: 1.2rem; opacity: 0.85; }
+  .text-block p:first-of-type::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    float: left;
+    line-height: 0.85;
+    padding: 0.4rem 0.7rem 0 0;
+    color: var(--gk-gold-bright);
+    font-weight: 600;
+  }
+
+  /* ====== CARD GRID ====== */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .card {
+    background: linear-gradient(135deg, rgba(29,58,95,0.5), rgba(20,40,71,0.6));
+    border: 1px solid rgba(201,169,97,0.18);
+    border-radius: 18px;
+    padding: 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,169,97,0.08), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+  }
+  .card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(201,169,97,0.4);
+    box-shadow: var(--shadow-md);
+  }
+  .card:hover::before { opacity: 1; }
+  .card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--gk-gold-bright);
+  }
+  .card .meta {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    opacity: 0.8;
+    margin-bottom: 1rem;
+  }
+  .card p { font-size: 0.95rem; opacity: 0.85; line-height: 1.6; }
+  .card .tag-row { margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(201,169,97,0.12);
+    color: var(--gk-gold-bright);
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+    border: 1px solid rgba(201,169,97,0.25);
+  }
+
+  /* ====== KÄRNVÄRDEN ====== */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+  .value {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    border: 1px solid rgba(201,169,97,0.2);
+    border-radius: 16px;
+    background: linear-gradient(180deg, rgba(201,169,97,0.05), transparent);
+    position: relative;
+    overflow: hidden;
+  }
+  .value-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    color: var(--gk-gold);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .value h3 {
+    font-size: 2rem;
+    color: var(--gk-gold-bright);
+    margin-bottom: 0.8rem;
+  }
+  .value p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+  }
+
+  /* ====== INFO LIST ====== */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+  .info-block {
+    padding: 1.8rem;
+    background: rgba(29,58,95,0.35);
+    border-left: 3px solid var(--gk-gold);
+    border-radius: 4px 14px 14px 4px;
+  }
+  .info-block h4 {
+    font-size: 1.4rem;
+    color: var(--gk-gold-bright);
+    margin-bottom: 0.6rem;
+  }
+  .info-block p, .info-block li {
+    font-size: 0.92rem;
+    opacity: 0.88;
+    line-height: 1.6;
+  }
+  .info-block ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+  .info-block li { margin-bottom: 0.4rem; }
+
+  /* ====== TIMELINE / CHEFS ====== */
+  .chef-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .chef {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(180deg, rgba(201,169,97,0.06), transparent);
+    border-radius: 14px;
+    border: 1px solid rgba(201,169,97,0.15);
+    transition: transform 0.3s;
+  }
+  .chef:hover { transform: translateY(-4px); }
+  .chef-initial {
+    width: 70px; height: 70px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gk-gold), var(--gk-gold-deep));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--gk-midnight);
+    font-weight: 600;
+  }
+  .chef-name { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gk-gold-bright); }
+  .chef-title { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; margin-top: 0.3rem; }
+
+  /* ====== STATS BAR ====== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 3rem 0;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(201,169,97,0.06), rgba(45,100,99,0.06));
+    border-top: 1px solid rgba(201,169,97,0.2);
+    border-bottom: 1px solid rgba(201,169,97,0.2);
+    border-radius: 8px;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.2rem;
+    line-height: 1;
+    color: var(--gk-gold-bright);
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  /* ====== PHONE LIST ====== */
+  .phone-section {
+    margin-bottom: 2.5rem;
+  }
+  .phone-section h4 {
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gk-gold);
+    margin-bottom: 1rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(201,169,97,0.2);
+  }
+  .phone-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .phone-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .phone-row:hover { background: rgba(201,169,97,0.08); }
+  .phone-row .name { font-weight: 500; }
+  .phone-row .role { font-size: 0.8rem; opacity: 0.65; margin-left: 0.5rem; }
+  .phone-row .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--gk-gold-bright);
+    letter-spacing: 0.05em;
+  }
+
+  /* ====== CALLOUT ====== */
+  .callout {
+    margin: 3rem 0;
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(217,122,122,0.08), rgba(201,169,97,0.05));
+    border-radius: 16px;
+    border: 1px solid rgba(217,122,122,0.25);
+    text-align: center;
+  }
+  .callout .lead { color: var(--gk-cream); }
+
+  /* ====== RULE LIST (do/don't) ====== */
+  .rule-list {
+    list-style: none;
+    margin-top: 1rem;
+  }
+  .rule-list li {
+    padding: 0.7rem 0 0.7rem 2rem;
+    position: relative;
+    border-bottom: 1px dashed rgba(201,169,97,0.15);
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+  .rule-list li:last-child { border-bottom: none; }
+  .rule-list li::before {
+    content: '✦';
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    color: var(--gk-gold);
+    font-size: 0.9rem;
+  }
+
+  /* ====== FOOTER ====== */
+  footer {
+    text-align: center;
+    padding: 3rem 1.5rem 2rem;
+    border-top: 1px solid rgba(201,169,97,0.15);
+    margin-top: 4rem;
+    opacity: 0.7;
+    font-size: 0.85rem;
+  }
+  footer .signature {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--gk-gold-bright);
+    margin-bottom: 0.5rem;
+  }
+
+  /* ====== SCROLL REVEAL ====== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 768px) {
+    .hero { min-height: 90vh; }
+    .tab-btn { padding: 1rem 0.9rem; font-size: 0.75rem; }
+    main { padding: 3rem 1rem 6rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= HERO ============= -->
+<section class="hero">
+  <div class="aurora"></div>
+  <div class="stars"></div>
+  <div class="hero-glow"></div>
+  <div class="ember-field" id="emberField"></div>
+  <div class="hero-content">
+    <div class="pre-title">GK Restauranger · Sommaren 2026</div>
+    <h1>Gemenskap<br/>med <em>Guldkant</em></h1>
+    <div class="hero-divider"></div>
+    <p class="hero-tagline">Välkommen till säsongen då vi tillsammans skapar minnen för livet — för våra gäster och för oss själva.</p>
+  </div>
+  <div class="scroll-hint">Scrolla ned · Läs mer</div>
+</section>
+
+<!-- ============= TAB NAV ============= -->
+<div class="tab-nav-wrap">
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" data-tab="valkommen">Välkommen</button>
+    <button class="tab-btn" data-tab="restauranger">Våra restauranger</button>
+    <button class="tab-btn" data-tab="vilka">Vilka är vi?</button>
+    <button class="tab-btn" data-tab="anstallning">Din anställning</button>
+    <button class="tab-btn" data-tab="vardag">Vardagen hos oss</button>
+    <button class="tab-btn" data-tab="sakerhet">Säkerhet & värdegrund</button>
+    <button class="tab-btn" data-tab="formaner">Förmåner & utveckling</button>
+    <button class="tab-btn" data-tab="kontakt">Kontakt</button>
+  </nav>
+</div>
+
+<main>
+
+  <!-- ============= TAB 1: VÄLKOMMEN ============= -->
+  <section class="panel active" id="valkommen">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 01</div>
+      <h2>Varmt välkomna</h2>
+      <p>Ett ord från ledningen inför säsongen.</p>
+    </div>
+
+    <div class="text-block">
+      <p>Nu är det äntligen dags. Du har förhoppningsvis gått och längtat till sommaren och är redo för en rolig utmaning — nämligen sommaren 2026. Vare sig du är härifrån eller kommer från en säsong i fjällvärlden, så är det här kanske en stor förändring för dig. Det är kanske ditt första sommarjobb, eller så har du fått en position med ansvar.</p>
+
+      <p>GK Restauranger har en lång historia som började med en inredningsbutik och en pizza- och sushi-restaurang. Idag omfattar GK en större organisation med <span class="gold">7 restauranger</span> — vilket gör oss till den största restaurangaktören i Västervik. Storlek i all ära, men det viktigaste är att vi jobbar mot samma håll och styr skeppet åt rätt riktning — på ett sätt som gör att vi har kul på jobbet.</p>
+
+      <p>Passa på att njuta under sommaren och utforska Västerviks skärgård och Vimmerbys natur. Var gärna med på personalaktiviteterna som anordnas under säsongen — mer om det längre fram här.</p>
+
+      <p class="lead gold">Nu kör vi järnet tillsammans och skapar minnen för livet.</p>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="stat-num count" data-target="7">0</div><div class="stat-label">Restauranger</div></div>
+      <div class="stat"><div class="stat-num count" data-target="120" data-prefix="~">0</div><div class="stat-label">Anställda i sommar</div></div>
+      <div class="stat"><div class="stat-num">2012</div><div class="stat-label">Guldkant öppnade</div></div>
+      <div class="stat"><div class="stat-num">3 G</div><div class="stat-label">Gemenskap · Generositet · Glädje</div></div>
+    </div>
+
+    <h3 style="text-align:center; font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--gk-gold-bright);">Ledningsgruppen</h3>
+    <div class="chef-row" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); max-width: 900px; margin: 0 auto;">
+      <div class="chef reveal">
+        <div class="chef-initial">EH</div>
+        <div class="chef-name">Erik Hemmingsson</div>
+        <div class="chef-title">VD · CEO</div>
+      </div>
+      <div class="chef reveal">
+        <div class="chef-initial">JS</div>
+        <div class="chef-name">Jonas Settlin</div>
+        <div class="chef-title">Inköpschef</div>
+      </div>
+      <div class="chef reveal">
+        <div class="chef-initial">JL</div>
+        <div class="chef-name">Jens Liljeberg</div>
+        <div class="chef-title">Ekonomichef</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TAB 2: RESTAURANGER ============= -->
+  <section class="panel" id="restauranger">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 02</div>
+      <h2>Våra sju restauranger</h2>
+      <p>Olika namn, olika känsla — samma anda. Här är platserna där vi sätter Guldkant på gästernas tillvaro.</p>
+    </div>
+
+    <div class="card-grid">
+      <div class="card reveal">
+        <div class="meta">Västervik · sedan 2012</div>
+        <h3>Guldkant Västervik</h3>
+        <p>Vårt flaggskepp i hjärtat av hamnen. Lunch, cocktails, musik, à la carte och take-away pizza. Gedigen uteservering, soltrappa, utebar och bar i centrum. Härifrån styrs hela skeppet.</p>
+        <div class="tag-row"><span class="tag">Flaggskepp</span><span class="tag">Lunch & middag</span><span class="tag">7 dagar/vecka</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="meta">Vimmerby · sedan 2022</div>
+        <h3>Guldkant Vimmerby</h3>
+        <p>Systerkrog till Västervik, belägen i den anrika fastigheten på Storgatan med utsikt över kyrkan. Ren à la carte med fokus på värme, värdskap, god mat och god dryck. Henrik H. och Christoffer Walker styr skutan.</p>
+        <div class="tag-row"><span class="tag">À la carte</span><span class="tag">Endast kvällstid</span></div>
+      </div>
+
+      <div class="card reveal" style="background: linear-gradient(135deg, rgba(244,208,63,0.10), rgba(20,40,71,0.6)); border-color: rgba(244,208,63,0.3);">
+        <div class="meta" style="color: #f4d03f;">Vimmerby sommartorg · ny 2026</div>
+        <h3 style="color: #f4d03f;">Sociala</h3>
+        <p>Vårt nya lounge-format mitt på Vimmerby sommartorg. Pinsa, Aperol Spritz och iskall ljus lager — i en avspänd italiensk loungekänsla. <em>Sociala</em> betyder helt enkelt "social" på italienska. Gult och vitrandigt — omöjligt att missa. Öppet alla dagar, eftermiddag till kväll.</p>
+        <div class="tag-row"><span class="tag" style="background: rgba(244,208,63,0.15); color: #f4d03f; border-color: rgba(244,208,63,0.35);">Pinsa</span><span class="tag">Aperol Spritz</span><span class="tag">Lounge</span><span class="tag">Eftermiddag–kväll</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="meta">Västerviks Resort</div>
+        <h3>Bello</h3>
+        <p>American/Italian-kitchen i centrum av resorten. Allt från Grab&Go till pizza och en grymt god burgare. Här är modern till våra tre verksamheter på resorten — som tillsammans ska föda 5 000 boende. Cirka 1 000 pizzor om dagen i högsäsong.</p>
+        <div class="tag-row"><span class="tag">Pizza</span><span class="tag">Grab&Go</span><span class="tag">v24–sept</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="meta">Västerviks Resort</div>
+        <h3>Medi</h3>
+        <p>Mediterranean streetfood i det stora badhuset, intill stranden. Pommestallrik, gyros, hamburgare, sallad och mackor. QR-koder överallt för smidig beställning. På helgeftermiddagar drar vi after beach med musik och DJ.</p>
+        <div class="tag-row"><span class="tag">Streetfood</span><span class="tag">After Beach</span><span class="tag">Dagtid</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="meta">Västerviks Resort</div>
+        <h3>Kajsas Veranda</h3>
+        <p>Vår "high end"-krog i det pittoreska röda huset, med panoramavy över resorten och havet. Skärgården inspirerar menyn — rimmad torskrygg eller en stor näve räkor med ett riktigt bra vin. Avslappnad men proffsig service, resortens absolut bästa mat.</p>
+        <div class="tag-row"><span class="tag">High end</span><span class="tag">Skärgård</span><span class="tag">Kvällstid</span></div>
+      </div>
+
+      <div class="card reveal">
+        <div class="meta">Lindvallen · vintersäsong</div>
+        <h3>Viktors by Guldkant</h3>
+        <p>Vår fjälldestination i Lindvallen. Exklusiv och värmande på vintern — det här är säsongssidan av visionen som komplement till våra livfulla sommarkrogar.</p>
+        <div class="tag-row"><span class="tag">Vintersäsong</span><span class="tag">Fjällvärlden</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TAB 3: VILKA ÄR VI? ============= -->
+  <section class="panel" id="vilka">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 03</div>
+      <h2>Vilka är vi?</h2>
+      <p>Vår affärsidé, vår vision och de tre orden vi lever efter — varje skift, varje gäst, varje dag.</p>
+    </div>
+
+    <div class="text-block reveal">
+      <p class="lead">På ett prisvärt och kreativt sätt sälja generösa restaurang- och restaurangrelaterade upplevelser där vi skapar Guldkant på gästernas tillvaro.</p>
+    </div>
+
+    <div class="callout reveal" style="margin-top: 4rem;">
+      <div class="panel-eyebrow">Vision · 3 år</div>
+      <p class="lead">Vi skapar lönsamma och minnesvärda restaurangupplevelser året runt — livfulla och snabbrörliga på sommaren, exklusiva och värmande på vintern.</p>
+    </div>
+
+    <h3 style="text-align:center; font-size: 2.5rem; margin: 4rem 0 1rem; color: var(--gk-gold-bright);">Våra tre G:n</h3>
+    <p style="text-align:center; opacity: 0.7; max-width: 500px; margin: 0 auto;">Kärnvärdena är inte ord på en vägg — det är så vi bemöter gäster och varandra.</p>
+
+    <div class="values-grid">
+      <div class="value reveal">
+        <div class="value-num">01</div>
+        <h3>Gemenskap</h3>
+        <p>Vi finns för vänner och ovänner, barn och föräldrar. Vi hittar en stol till alla hyggliga medborgare.</p>
+      </div>
+      <div class="value reveal">
+        <div class="value-num">02</div>
+        <h3>Generositet</h3>
+        <p>Ge mer än du får. Prima service, atmosfär, mat och dryck — utan att räkna varje sekund.</p>
+      </div>
+      <div class="value reveal">
+        <div class="value-num">03</div>
+        <h3>Glädje</h3>
+        <p>Vi har kul på jobbet. Det smittar av sig på gästerna — det är hela poängen.</p>
+      </div>
+    </div>
+
+    <h3 style="text-align:center; font-size: 2rem; margin: 4rem 0 0.5rem; color: var(--gk-gold-bright);">Hur vi jobbar</h3>
+    <p style="text-align:center; opacity: 0.7; margin-bottom: 2rem;">Konkreta beteenden vi belönar och förväntar oss.</p>
+
+    <div class="info-grid">
+      <div class="info-block reveal">
+        <h4>Vi vågar be om hjälp</h4>
+        <p>Ingen kan allt. Att fråga är ett tecken på styrka, inte svaghet.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>Vi ger varandra beröm</h4>
+        <p>När någon gjort något bra — säg det. Högt. Direkt.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>Vi har kul på jobbet</h4>
+        <p>Det är inte en slogan — det är ett krav. Skratt smittar lika mycket som stress.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>Vi lever värderingarna</h4>
+        <p>Inte bara på möten. På golvet, i köket, i baren, i skiftbytet.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>Prestigelöshet & generositet</h4>
+        <p>Inga revir. Hjälp en kollega — även om det inte är "din" gäst eller "ditt" station.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>Tydliga ansvarsområden</h4>
+        <p>Du vet vad som är ditt. Använd förnuftet, ta ansvar, väx i din yrkesroll.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TAB 4: DIN ANSTÄLLNING ============= -->
+  <section class="panel" id="anstallning">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 04</div>
+      <h2>Din anställning</h2>
+      <p>Det praktiska — lön, schema, anställningsbevis och boende.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block reveal">
+        <h4>Lön</h4>
+        <p>Utbetalas den <span class="gold">25:e</span> efter avslutad månad. Vi arbetar med Caspeco — du stämplar in och ut med ditt personnummer. Att vara instämplad är ett krav i branschen, så var noga.</p>
+        <p style="margin-top:0.7rem;">Stämmer inte dina timmar eller har du missat att stämpla ut — meddela din restaurangchef.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Anställningsbevis</h4>
+        <p>Skickas ut, signeras elektroniskt och sparas i din Caspeco-app. Där ser du också timrapport och schema. Anställningsbeviset är en värdehandling och privat.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Schema</h4>
+        <p>Schemalagt och varierar veckovis. Vi jobbar alltid efter att du har tillgång till ditt schema <span class="gold">2 veckor framåt</span>. Visa respekt för kollegor — var på plats i god tid innan ditt pass börjar.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Personalboende</h4>
+        <p>Bor du inte i Västervik eller Vimmerby behöver du tillgång till boende. I Västervik har vi ett <span class="gold">kollektiv för 10–12 personer</span> — eget rum, delade umgängesytor och kök.</p>
+        <p style="margin-top:0.7rem;">Hyreskontrakt och frågor om boendet ställs till <span class="gold">Erik Hemmingsson</span>. I Vimmerby har vi inget eget boende men hjälper till så långt det går.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Ledighet</h4>
+        <p>Ledighet frågar du din närmaste chef om. Försök vara ute i god tid — vi lever efter principen att <em>allt går att lösa</em>.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Sjuk?</h4>
+        <p>Kontakta din restaurangchef <span class="gold">via telefonsamtal</span> så snart som möjligt — inte SMS.</p>
+        <p style="margin-top:0.7rem;">Restaurangchefen kan kräva intyg från dag 1. Vid sjukdom längre än 7 dagar lämnas läkarintyg. Uppdatera din chef dagligen om hur du mår och när du planerar att vara tillbaka.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Intyg & betyg</h4>
+        <p>Efter avslutad säsong är du berättigad till ett betyg och intyg från din restaurangchef. <span class="gold">Detta måste du be om.</span></p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Säsongsslut</h4>
+        <p>Säsongen slutar oftast <span class="gold">vecka 34</span> när skolan börjar igen, med en lugnare vecka innan dess. Frågor kring säsongsavslutning — prata med din restaurangchef.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TAB 5: VARDAGEN ============= -->
+  <section class="panel" id="vardag">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 05</div>
+      <h2>Vardagen hos oss</h2>
+      <p>Mat, kläder, smycken, parkering och allt det där som inte står i lönespecen men som gör skillnad.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block reveal">
+        <h4>Personalmat</h4>
+        <p>Jobbar du mer än 4 timmar har du rätt till ett lagat mål mat — vällagat och näringsrikt. För denna förmån dras <span class="gold">48 kr på bruttolönen</span> (bestämmelser från Skatteverket och HRF).</p>
+        <p style="margin-top:0.7rem;">Personalmaten äts på den restaurang du arbetar på. På fritiden är du såklart välkommen som gäst — men kom då som gäst, inte som ledig personal. Kaffe bjuder vi alltid på.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Smycken & yttre</h4>
+        <p>Ett vårdat yttre ger ett positivt första intryck. Överdriv inte ringar, smycken, piercingar. <span class="gold">I köket är smycken förbjudna av säkerhetsskäl.</span> Långt hår ska vara uppsatt eller i fläta.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Rökning</h4>
+        <p>Endast tillåtet på utvald plats under raster. Byt om till privata kläder eller täck arbetskläderna med jacka. Prata med arbetsledare om var rökning får ske.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Snus</h4>
+        <p>OK under arbetstid — men inte så att gäster ser eller känner snuslukt. Snusdosan ska förvaras osynlig för gäster.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Bil & parkering</h4>
+        <p>Vi tillhandahåller ingen personalparkering. Använd kommunens eller anläggningens allmänna parkeringar. Cykel/moped/2-hjuligt får stå på lastkajen — men på egen risk.</p>
+        <p style="margin-top:0.7rem;">I Västervik finns gratis parkering med p-skiva. Flytt av bil eller p-skive-byte sker <span class="gold">inte på arbetstid</span> — det sköts under rast.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Alkohol & droger</h4>
+        <p>Vi konsumerar inte berusningsmedel på arbetsplatsen. Olagliga substanser → polisanmälan. Alkohol på arbetstid → skriftlig varning eller avslutad provanställning. <span class="gold">Vi accepterar inte heller dagen-efter-trötthet, bakis eller fortsatt berusning.</span></p>
+      </div>
+    </div>
+
+    <div class="callout reveal">
+      <p class="lead">Gästfrihet är något som ska kännas, inte anas — och det kan bara mänskliga resurser åstadkomma.</p>
+    </div>
+  </section>
+
+  <!-- ============= TAB 6: SÄKERHET & VÄRDEGRUND ============= -->
+  <section class="panel" id="sakerhet">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 06</div>
+      <h2>Säkerhet & värdegrund</h2>
+      <p>Det här är icke förhandlingsbart. Vi tar hand om varandra — alltid.</p>
+    </div>
+
+    <div class="text-block reveal">
+      <p>Säkerhet berör alla. Det är allas ansvar och skyldighet att följa anvisningar — anmäl direkt eventuella säkerhetsrisker till din arbetsledare. Skulle olyckan vara framme: meddela arbetsledare direkt.</p>
+      <p>Under introduktionsdagarna får du instruktion i <span class="gold">brandsäkerhet och HLR</span>. På huvudkontoret, Guldkant Västervik (Grönsakstorget 6), finns en pärm med alla arbetsmiljöpapper och dokument för skadeanmälan till Arbetsmiljöverket.</p>
+    </div>
+
+    <div class="callout reveal">
+      <div class="panel-eyebrow" style="color: var(--gk-rose);">Detta accepterar vi inte</div>
+      <p class="lead">Vi accepterar under <em>inga</em> omständigheter mobbning, särbehandling, sexuella eller andra trakasserier på våra arbetsplatser.</p>
+      <p style="margin-top:1rem; opacity:0.85;">Har du synpunkter på din arbetsmiljö — prata med din närmsta chef eller med <span class="gold">Erik Hemmingsson (HR-ansvarig)</span> så hjälper vi dig.</p>
+    </div>
+
+    <div class="info-grid" style="margin-top: 2rem;">
+      <div class="info-block reveal">
+        <h4>Allas lika värde</h4>
+        <p>GKRAB står för allas lika värde. Vi sympatiserar med RFSL och arbetar för att samma rättigheter, möjligheter och skyldigheter ska gälla för hbtq-personer som för alla andra.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>Fackförbund</h4>
+        <p>Vi är medlemmar i arbetsgivarorganisationen <span class="gold">Visita</span> och har kollektivavtal med <span class="gold">HRF</span> (Hotell- och Restauranganställdas Förbund). Vill du gå med fackligt — fråga oss om numret.</p>
+      </div>
+      <div class="info-block reveal">
+        <h4>GDPR</h4>
+        <p>Vi arbetar med Caspeco där vi har personuppgiftsbiträdesavtal. Vid eventuellt intrång anmäler vi till Datainspektionen och meddelar berörda. Vill du veta mer — fråga <span class="gold">Jens Liljeberg</span>.</p>
+        <p style="margin-top:0.7rem;">Vid foto/film i marknadsföringssyfte: säg till om du inte vill medverka.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= TAB 7: FÖRMÅNER & UTVECKLING ============= -->
+  <section class="panel" id="formaner">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 07</div>
+      <h2>Förmåner & utveckling</h2>
+      <p>Det vi bjuder på, det vi förväntar oss tillbaka — och det vi lovar att hjälpa dig växa till.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-block reveal">
+        <h4>Personalaktiviteter</h4>
+        <p>Under säsongen bjuds det på öl- och vinprovningar, minigolf, kubb, föreläsning och mycket mer. Vi gör vårt bästa för att din säsong och fritid ska bli så meningsfull som möjligt. Prata med din restaurangchef för mer info.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Personalmöten</h4>
+        <p>Varje avdelning har personalmöten med jämna mellanrum — styrt av restaurangchefen. <span class="gold">Mötena är obligatoriska</span> men brukar inte ta för lång tid.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Utvecklingssamtal</h4>
+        <p>Alla anställda har möjlighet till utvecklingssamtal med sin närmsta chef när det behövs — för att diskutera problem, idéer eller framföra åsikter. Säg till så bokar vi in.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Dricks</h4>
+        <p>På våra avdelningar uppmanar vi gäster om dricks. Vi delar lika mot arbetstid och arbetsroll. Dricks delas ut på lön — du tar själv upp den i din deklaration.</p>
+      </div>
+
+      <div class="info-block reveal">
+        <h4>Sociala medier</h4>
+        <p>Vi finns på sociala medier för att upptäckas, upplevas och välkomna gäster. Som anställd är du en viktig del av marknadsföringen. Strategin bygger på fyra ord: <span class="gold">snyggt, proffsigt, levande, engagerat.</span></p>
+        <p style="margin-top:0.7rem;">Du får en inbjudan till FB-gruppen "Personal Guldkant" när du börjar. Varje team har en Messenger-chat där info och frågor publiceras.</p>
+      </div>
+    </div>
+
+    <h3 style="text-align:center; font-size: 1.8rem; margin: 4rem 0 1rem; color: var(--gk-gold-bright);">Ditt egna ansvar</h3>
+    <div class="text-block reveal">
+      <p>Som anställd på GK Restauranger AB har man rättigheter — men också skyldigheter. Vi förväntar oss att man följer regler och bestämmelser, men också att man <span class="gold">jobbar aktivt för företagets och sin egna utveckling</span>. Fråga gärna och lär dig. Men våga också vara lösningsorienterad och ta initiativ på egen hand.</p>
+      <p class="lead">"Learning by doing" är ett bra uttryck tycker vi.</p>
+    </div>
+  </section>
+
+  <!-- ============= TAB 8: KONTAKT ============= -->
+  <section class="panel" id="kontakt">
+    <div class="panel-header">
+      <div class="panel-eyebrow">Kapitel 08</div>
+      <h2>Bra nummer att känna till</h2>
+      <p>Spara dem i mobilen redan nu — det är värt det.</p>
+    </div>
+
+    <div style="max-width: 760px; margin: 0 auto;">
+
+      <div class="phone-section reveal">
+        <h4>Restauranger</h4>
+        <div class="phone-list">
+          <div class="phone-row"><span class="name">Guldkant Västervik</span><span class="number">0490-216 00</span></div>
+          <div class="phone-row"><span class="name">Guldkant Vimmerby</span><span class="number">0492-790 90</span></div>
+          <div class="phone-row"><span class="name">Sociala (Vimmerby sommartorg)</span><span class="number">— TBD</span></div>
+          <div class="phone-row"><span class="name">Västerviks Resort</span><span class="number">070-550 75 63</span></div>
+        </div>
+      </div>
+
+      <div class="phone-section reveal">
+        <h4>Restaurangchefer & köksmästare</h4>
+        <div class="phone-list">
+          <div class="phone-row"><span><span class="name">Erik Hemmingsson</span><span class="role">VD · GK Västervik · HR</span></span><span class="number">076-033 47 38</span></div>
+          <div class="phone-row"><span><span class="name">Arvid Wahlström</span><span class="role">GK Västervik</span></span><span class="number">073-525 79 62</span></div>
+          <div class="phone-row"><span><span class="name">Johan Rickardsson</span><span class="role">GK Västervik</span></span><span class="number">070-459 46 08</span></div>
+          <div class="phone-row"><span><span class="name">Henrik Hemmingsson</span><span class="role">GK Vimmerby</span></span><span class="number">076-894 90 58</span></div>
+          <div class="phone-row"><span><span class="name">Christoffer Walker</span><span class="role">GK Vimmerby</span></span><span class="number">076-178 67 26</span></div>
+          <div class="phone-row"><span><span class="name">Jonas Settlin</span><span class="role">Inköpschef · Resorten</span></span><span class="number">070-550 75 63</span></div>
+          <div class="phone-row"><span><span class="name">Jenny Viberg</span><span class="role">Ansvarig Västerviks Resort</span></span><span class="number">— TBD</span></div>
+          <div class="phone-row"><span><span class="name">Hanna Oscarsson</span><span class="role">Platschef Resorten</span></span><span class="number">070-331 61 05</span></div>
+        </div>
+      </div>
+
+      <div class="phone-section reveal">
+        <h4>Ledningsgruppen</h4>
+        <div class="phone-list">
+          <div class="phone-row"><span><span class="name">Erik Hemmingsson</span><span class="role">VD · CEO</span></span><span class="number">076-033 47 38</span></div>
+          <div class="phone-row"><span><span class="name">Jonas Settlin</span><span class="role">Inköpschef</span></span><span class="number">070-550 75 63</span></div>
+          <div class="phone-row"><span><span class="name">Jens Liljeberg</span><span class="role">Ekonomichef</span></span><span class="number">070-684 79 43</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="signature">Varmt välkomna // Erik, Jonas & Jens</div>
+  <div>GK Restauranger AB · Sommaren 2026 · <span class="gold">Gemenskap · Generositet · Glädje</span></div>
+</footer>
+
+<script>
+  // ====== Tab switching ======
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+      // smooth scroll to nav
+      window.scrollTo({ top: document.querySelector('.tab-nav-wrap').offsetTop - 1, behavior: 'smooth' });
+      // re-trigger reveals
+      requestAnimationFrame(() => observeReveals());
+    });
+  });
+
+  // ====== Scroll reveals ======
+  let observer;
+  function observeReveals() {
+    if (observer) observer.disconnect();
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.panel.active .reveal:not(.visible)').forEach(el => observer.observe(el));
+  }
+  observeReveals();
+
+  // ====== Count-up siffror när de blir synliga ======
+  function animateCount(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    const target = parseInt(el.dataset.target, 10);
+    const prefix = el.dataset.prefix || '';
+    const dur = 1600;
+    const start = performance.now();
+    function tick(t) {
+      const p = Math.max(0, Math.min(1, (t - start) / dur));
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = prefix + Math.round(target * eased);
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        animateCount(e.target);
+        countObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.count').forEach(el => countObserver.observe(el));
+
+  // ====== Embers — flytande gnistor i hero ======
+  const emberField = document.getElementById('emberField');
+  if (emberField) {
+    function spawnEmber() {
+      const e = document.createElement('div');
+      e.className = 'ember';
+      e.style.left = Math.random() * 100 + '%';
+      e.style.bottom = '-20px';
+      e.style.animationDuration = (12 + Math.random() * 8) + 's';
+      emberField.appendChild(e);
+      setTimeout(() => e.remove(), 22000);
+    }
+    setInterval(spawnEmber, 1300);
+    // seed a few immediately
+    for (let i = 0; i < 5; i++) setTimeout(spawnEmber, i * 800);
+  }
+</script>
+
+</body>
+</html>
