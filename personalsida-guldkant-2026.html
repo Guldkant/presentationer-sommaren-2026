@@ -214,13 +214,14 @@
     max-width: 1280px;
     margin: 0 auto;
     display: flex;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding: 0 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.25rem 1rem;
   }
   .tab-nav::-webkit-scrollbar { display: none; }
   .tab-btn {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
+    text-align: center;
     background: none;
     border: none;
     color: var(--gk-cream);
